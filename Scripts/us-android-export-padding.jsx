@@ -17,7 +17,7 @@ var docRef = app.activeDocument,
 	appHeight = app.activeDocument.height,
 	newWidth,
 	newHeight,
-	docName = docRef.name;
+	docName = docRef.name.slice(0,-4);
 
 
 // Run main function
@@ -136,7 +136,7 @@ function saveFunc(dpi) {
 	var Name = docRef2.name.replace(/\.[^\.]+$/, ''),
 		Ext = decodeURI(docRef2.name).replace(/^.*\./,''),
 		Path = docRef.path,
-		folder = Folder(Path + '/' + docName + '-assets/' + 'drawable-' + dpi);
+		folder = Folder(Path + '/' + docName + '/' + 'drawable-' + dpi);
 
 	if(!folder.exists) {
 		folder.create();

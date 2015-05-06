@@ -1,37 +1,66 @@
-##Easy Asset Creation with Photoshop Scripts and Automator
+##iOS and Android Asset Workflow
 
-**Requirements**  
+The following details how to better automate your design workflow in order to generate a full asset library following standard iOS and Android naming conventions.
 
+_Requires:_  
 - Mac  
-- Photoshop CS6 or CC  
+- Adobe Photoshop CS6 / CC  
 
+**Initial Asset Setup**  
 
-The following details how to better automate your design workflow in order to generate an asset library with a few clicks.  You will need to start with assets that are setup for 3x or XXHDPI, as these are being scaled down in order to achieve the best image quality. The process follows standard iOS and Android naming conventions and will use the current filename as the source. 
+1. Consolidate your assets into a single Illustrator document using multiple artboards, saving this file as 'assets.eps'  
+2. Rename each Artboard what you want that asset to be named  
+3. File > Export to a new directory named 'assets', using 'Format: PNG' and select 'Use Artboards'  
+4. Select 'Resolution: Other' and set to '216 PPI', which is three times the standard 72  
 
-1. Download the attached Zip file
-2. Place the JSX scripts into your Photoshop > Presets > Scripts folder  
-3. Open the iOS Asset Creator.atn in Photoshop
-4. Restart Photoshop  
-5. Open an image
-6. Run the 'Create iOS Assets' or 'Create Android Assets' action
+This method allows you a single file to update dimensions and colors easily, while also creating those 3x graphics with a few clicks.
 
-This will create a folder, at the location of the file, with all of the assets.
+**Installing Scripts and Services**  
 
-_* Caveat_  
-If you are using PNG files, the script will clip to the sive of the image and not the layer's dimensions, removing any padding you may have included.  
+1. Download and open the attached zip file  
+2. Move the JSX files to Applications > Photoshop > Presets > Scripts (restart Photoshop)  
+3. Open the ATN files to install in Photoshop  
+4. Open the Services and Install them  
 
-####Additional iOS Consolidation
+A brief description of what these files are doing:  
 
-If you prefer to keep your assets together in a single folder, This can be done two ways, using either the Asset Consolidator app or service. To use the app, drag the App Consolidator.app onto your desktop or somewhere you can easily access it. If you prefer to use a service, open the App Consolidator.workflow and install. 
+**Scripts**  
+_docNameToLayerName_  
+This script  renames the layer based on the filename  
+_us-android-export-padding_  
+This script scales the original 3x asset, and saves them at each resolution with standard Android naming conventions  
+_us-ios-export-padding_  
+his script This script scales the original 3x asset, and saves them at each resolution with standard iOS naming conventions  
 
-1. Create a new folder called 'assets'
-2. Drag all of the newly created iOS asset folders into 'assets'
-3. Drag 'assets' into the Asset Consolidator app or control + click on the folder and select Services > Asset Consolidator
+**Actions**  
+_Asset Automator_  
+Contains two actions which run the layer renaming script, then either one of the OS specific scripts  
 
-The Asset Consolidator moves all of the images into the root level of the 'asset' folder and deletes the remaining empty folders, leaving you with a single folder with all of your assets.
+**Services**  
+_Strip Asset Prefix_  
+This service removes the 'assets_' prefix from the initial 3x assets created from Illustrator  
+_Cleanup Orignal Assets_  
+Removes the original asset files from the directory  
+_Asset Consolidator_  
+This service moves all files from subdirectories into root directory  
 
-_* Warning_  
-If you have assets with the same name, the Asset Consolidator will overwrite the duplicates.  
+Once these scripts and services are are installed, you can follow the next few steps to generate your full sets od assets.
+
+1. Right click on the initial 'asset' directory and run Service > Strip Asset Prefix (This will remove the 'assets_'prefix from all of your files)
+2. Open Photoshop
+3. File > Automate > Batch
+4. Select 'Set: Asset Automator', 'Action: Create iOS Assets' or 'Create Android Assets', 'Source: Folder', select your initial setup directory with your 3x assets
+5. Press OK (This will run the scripts on all of your assets in your folder, creating a directory for each with the properly name assets in each)  
+6. Right click on the parent directory and run Service > Cleanup Orignal Assets
+
+This will remove the original assets and leave you all of your asset directories. For iOS you may want all of your assets combined into a single directory instead of separated into their own sub-directories. If that is the case:
+
+- Right click on the parent directory and run Service > Asset Consolidator
+
+This moves all the images into the root directory, and deletes the remaining empty sub-directories.
+
+And that's it, you now have a full set of assets ready for production.
+
 
 **Sources**  
 [Rename Photoshop Layer as Filename](http://polygonspixelsandpaint.tumblr.com/post/45209654643)  

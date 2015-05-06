@@ -17,7 +17,7 @@ var docRef = app.activeDocument,
 	appHeight = app.activeDocument.height,
 	newWidth,
 	newHeight,
-	docName = docRef.name;
+	docName = docRef.name.slice(0,-4);
 
 var scaleFactors = {
 	'@3x': 1,
@@ -127,7 +127,7 @@ function saveFunc(dpi) {
 	var Name = docRef2.name.replace(/\.[^\.]+$/, ''),
 		Ext = decodeURI(docRef2.name).replace(/^.*\./,''),
 		Path = docRef.path,
-		folder = Folder(Path + '/' + docName + '-assets/');
+		folder = Folder(Path + '/' + docName + '/');
 
 	if(!folder.exists) {
 		folder.create();
