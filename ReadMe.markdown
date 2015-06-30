@@ -44,9 +44,9 @@ Removes the original asset files from the directory
 _Asset Consolidator_  
 This service moves all files from subdirectories into root directory  
 
-Once these scripts and services are are installed, you can follow the next few steps to generate your full sets od assets.
+Once these scripts and services are are installed, you can follow the next few steps to generate your full sets of assets.
 
-1. Right click on the initial 'asset' directory and run Service > Strip Asset Prefix (This will remove the 'assets_'prefix from all of your files)
+1. Right click on the initial 'assets' directory and run Service > Strip Asset Prefix (This will remove the 'assets_' prefix from all of your files)
 2. Open Photoshop
 3. File > Automate > Batch
 4. Select 'Set: Asset Automator', 'Action: Create iOS Assets' or 'Create Android Assets', 'Source: Folder', select your initial setup directory with your 3x assets
