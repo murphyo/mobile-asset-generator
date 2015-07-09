@@ -26,6 +26,7 @@ init();
 // The other functions
 function init() {
 	if(!isDocumentNew()) {
+		saveFunc('xxxhdpi');
 		saveFunc('xxhdpi');
 		saveFunc('xhdpi');
 		saveFunc('hdpi');
@@ -65,18 +66,21 @@ function resizeDoc(document, scale) {
 		calcHeight = appHeight; // Get layer's height
 	// newWidth, newHeight;
 
-	if(scale === 'xxhdpi') {
+	if(scale === 'xxxhdpi') {
 		newHeight = calcHeight;
 		newWidth = calcWidth;
+	} else if(scale === 'xxhdpi') {
+		newHeight = Math.floor(calcHeight / 4 * 3);
+		newWidth = Math.floor(calcWidth / 4 * 3);
 	} else if(scale === 'xhdpi') {
-		newHeight = Math.floor(calcHeight / 3 * 2);
-		newWidth = Math.floor(calcWidth / 3 * 2);
+		newHeight = Math.floor(calcHeight / 4 * 2);
+		newWidth = Math.floor(calcWidth / 4 * 2);
 	} else if(scale === 'hdpi') {
-		newHeight = Math.floor(calcHeight / 2);
-		newWidth = Math.floor(calcWidth / 2);
+		newHeight = Math.floor(calcHeight / 4 * 1.5);
+		newWidth = Math.floor(calcWidth / 4 * 1.5);
 	} else if(scale === 'mdpi') {
-		newHeight = Math.floor(calcHeight / 3);
-		newWidth = Math.floor(calcWidth / 3);
+		newHeight = Math.floor(calcHeight / 4);
+		newWidth = Math.floor(calcWidth / 4);
 	}
 
 	// Resize temp document using Bicubic interpolation
