@@ -29,10 +29,13 @@ _docNameToLayerName_
 Renames the layer based on the filename  
 
 _us-android-export-padding_  
-Takes a XXXHDPI image and creates M/H/XH/XXH/XXXHDPI assets using Android naming conventions  
+Takes a XXXHDPI image and creates M/H/X/XX/XXXHDPI assets using Android naming conventions  
 
 _us-ios-export-padding_  
-Takes a 3x image and create 1/2/3x assets using iOS naming conventions    
+Takes a 3x image and create 1/2/3x assets using iOS naming conventions 
+
+_AI-MultiExporter_  
+Adds ability to export Illustrator artboards as PDFs    
 
 **Actions**  
 _Asset Automator_  
@@ -49,29 +52,46 @@ Removes the original asset files from the directory
 _Asset Consolidator_  
 This service moves all files from subdirectories into root directory  
 
+_Merge Folders_  
+Merges the contents of folders with the same name  
+
+
 ####Automating Your Workflow  
 
 **Initial Asset Setup**  
-This method allows supplies a single file to update dimensions and colors easily, while also creating those 3x graphics with a few clicks.
+This method utilizes a single file to control dimensions, colors, and naming easily, while also generating 3x/4x graphics.
 
 1. Consolidate your assets into a single Illustrator document using multiple artboards, saving this file as 'assets.eps'  
-2. Rename each Artboard what you want that asset to be named  
-3. File > Export to a new directory named 'assets', using 'Format: PNG' and select 'Use Artboards'  
-4. Select 'Resolution: Other' and set to '216 PPI', which is three times the standard 72  
+2. Name each Artboard as desired  
+3. File > Export to a new directory named 'assets'
+	- 'Format: PNG' 
+	- Select 'Use Artboards'  
+4. Select 'Resolution: Other'
+	- Set to '216 PPI' for iOS (3x 72dpi)   
+	- Set to '288 PPI' for Android (4x 72dpi)   
 
 **Creating Assets**  
-Once your assets are in a common directory, you will be able to use the Photoshop actions and scripts to get them ready for production.
+Once your assets are in a common directory, the Photoshop actions and scripts will generate the assets for production.
 
-1. Right click on the initial 'assets' directory and run Service > Strip Asset Prefix (This will remove the 'assets_' prefix from all of your files)
-2. Open Photoshop
+1. Command click on the initial 'assets' directory and run Service > Strip Asset Prefix, which will remove the 'assets_' prefix from all of your files.
+2. Open Photoshop.
 3. File > Automate > Batch
-4. Select 'Set: Asset Automator', 'Action: Create iOS Assets' or 'Create Android Assets', 'Source: Folder', select your initial setup directory with your 3x assets
-5. Press OK (This will run the scripts on all of your assets in your folder, creating a directory for each with the properly name assets in each)  
-6. Right click on the parent directory and run Service > Cleanup Orignal Assets
+	1. 'Set: Asset Automator'.  
+	2. 'Action: Create iOS Assets' or 'Create Android Assets'.
+	3. 'Source: Folder' - Select your initial setup directory with your assets.
+	4. 'Destination' - Select the same 'Source' directory.
+	5. Press OK, which will run the scripts on all of your assets in your folder, creating a directory for each with the properly name assets in each.
+5. Command click on the parent directory and run Service > Cleanup Orignal Assets, which will remove the original assets.
 
 _For iOS you may want all of your assets combined into a single directory instead of separated into their own sub-directories_  
 
-1. Right click on the parent directory and run Service > Asset Consolidator
+1. Right click on the parent directory and run Services > Asset Consolidator.
+
+_For Android you may want all of your assets combined into a single set of the size class directories instead of separated into their own sub-directories_   
+
+1. Create a new directory for the consolidated assets.
+2. Select all of the auto-generated directories in the assets directory and run Services > Merge Directories.
+3. Select the newly created directory as the destination.
 
 **Creating App Icons**  
 
@@ -82,9 +102,10 @@ _For iOS you may want all of your assets combined into a single directory instea
 
 
 **Sources**  
-[Export Layer as iOS 3x, 2x, 1x assets](https://github.com/UncorkedStudios/export-to-ios) _*edited_  
-[Export Layer as Android XXHDPI, XHDPI, HDPI, MDPI, and LDPI assets](https://github.com/UncorkedStudios/export-to-android) _*edited_  
+[Consolidate Images using Automator](http://www.macworld.com/article/1160660/automator_filesfromsubfolders.html)  
+[Export Layer for iOS](https://github.com/UncorkedStudios/export-to-ios) _*edited_  
+[Export Layers for Android](https://github.com/UncorkedStudios/export-to-android) _*edited_  
+[Merge Folders](https://gist.github.com/c0der78/1995482)  
 [Output iOS Icons](https://gist.github.com/tlinkner/3723395) _*edited_  
 [Output Android Icons](https://gist.github.com/tlinkner/0a0090895b631f855cd3) _*edited_  
 [Rename Photoshop Layer as Filename](http://polygonspixelsandpaint.tumblr.com/post/45209654643)  
-[Consolidate Images using Automator](http://www.macworld.com/article/1160660/automator_filesfromsubfolders.html)  
