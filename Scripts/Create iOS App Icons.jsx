@@ -16,6 +16,7 @@
 // [name]-60@3x.png
 // [name]-76.png
 // [name]-76@2x.png
+// [name]-167.png
 // [name]-512.png   (512px x 512px)
 // [name]-512@2x.png  (1024px x 1024px)
 
@@ -48,6 +49,7 @@ function main() {
     resize(60,3);
     resize(76,1);
     resize(76,2);
+    resize(167,1);
     resize(512,1);
     resize(512,2);
 

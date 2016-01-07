@@ -51,37 +51,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>--- Merge Folders v1
---- Author: c0der78@gmail.com
-
---- handler for performing the merging. 
-on merge(src_paths, dest_path)
-
-	--- Uses the 'ditto' shell command as a backend
-	set cmd to "ditto " &amp; src_paths &amp; quoted form of dest_path
-	
-	try
-		do shell script cmd
-	on error
-		--- Retry with admin privileges on error
-		do shell script cmd with administrator privileges
-	end try
-end merge
-
-on run {input, parameters}
-	set dest to choose folder with prompt "Select destination for merge:"
-	set dest_path to (POSIX path of dest) as text
-	set src_paths to ""
-	repeat with idx from 1 to count (input)
-		set src_paths to src_paths &amp; (quoted form of (POSIX path of item idx of input as text)) &amp; " "
-	end repeat
-	
-	try
-		merge(src_paths, dest_path)
-	on error msg
-		display dialog the msg
-	end try
-end run</string>
+					<string>--- Merge Folders v1--- Author: c0der78@gmail.com--- handler for performing the merging. on merge(src_paths, dest_path)	--- Uses the 'ditto' shell command as a backend	set cmd to "ditto " &amp; src_paths &amp; quoted form of dest_path		try		do shell script cmd	on error		--- Retry with admin privileges on error		do shell script cmd with administrator privileges	end tryend mergeon run {input, parameters}	set dest to choose folder with prompt "Select destination for merge:"	set dest_path to (POSIX path of dest) as text	set src_paths to ""	repeat with idx from 1 to count (input)		set src_paths to src_paths &amp; (quoted form of (POSIX path of item idx of input as text)) &amp; " "	end repeat		try		merge(src_paths, dest_path)	on error msg		display dialog the msg	end tryend run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -132,8 +102,6 @@ end run</string>
 						<string>0</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
@@ -147,6 +115,17 @@ end run</string>
 	</array>
 	<key>connectors</key>
 	<dict/>
+	<key>variables</key>
+	<array>
+		<dict>
+			<key>UUID</key>
+			<string>6E0C9B41-B740-4242-BA60-2E4E8A355FD5</string>
+			<key>identifier</key>
+			<string>com.apple.Automator.Variable.Storage</string>
+			<key>name</key>
+			<string>hostFolder</string>
+		</dict>
+	</array>
 	<key>workflowMetaData</key>
 	<dict>
 		<key>serviceInputTypeIdentifier</key>

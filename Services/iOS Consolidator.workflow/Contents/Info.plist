@@ -8,13 +8,18 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Merge Folders</string>
+				<string>iOS Consolidator</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>runWorkflowAsService</string>
+			<key>NSRequiredContext</key>
+			<dict>
+				<key>NSApplicationIdentifier</key>
+				<string>com.apple.finder</string>
+			</dict>
 			<key>NSSendFileTypes</key>
 			<array>
-				<string>public.item</string>
+				<string>public.folder</string>
 			</array>
 		</dict>
 	</array>
