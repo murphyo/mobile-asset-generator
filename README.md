@@ -1,111 +1,127 @@
-##iOS and Android Asset Workflow
+##Android & iOS Asset Workflow
 
-The following details how to better automate your design workflow in order to generate full assets catalogs following standard iOS and Android naming conventions.
+####Introduction
 
-_Requires:_  
-- Mac  
-- Adobe Photoshop CS6 / CC  
+The following details how to better automate your design workflow. simplify the generation of a full asset library to few clicks, while following standard iOS and Android naming conventions.
 
-####Installation and Background  
+####Requirements 
 
-**Installing Actions, Scripts, and Services**  
+1. Mac OSX  
+2. Adobe Illustrator (CS6/CC)  
+3. Adobe Photoshop (CS6/CC)  
 
-1. Download and open the attached zip file  
-2. Move the JSX files to Applications > Photoshop > Presets > Scripts (restart Photoshop)  
-3. Open the ATN file to install in Photoshop  
-4. Open the Services and install each  
+####Installing Scripts and Services  
 
+1. Download and open the zip file from our designer's [GitHub Page](https://github.com/murphyo/mobile-asset-generator)
+2. Move the JSX files to Applications > Photoshop > Presets > Scripts  
+3. Open the ATN files to install in Photoshop
+4. Relaunch Photoshop 
+5. Open the Services files to install them  
 
-Brief description of what these files are doing:  
+**Here are some brief descriptions of what these files are doing:**  
 
-**Scripts**  
-_create-android-launcher-icons_  
-Takes a 1024 x 1024 PNG and creates M/H/X/XX/XXXHDPI assets using Android naming conventions  
+####Scripts
+1. **Create Android Launcher Icons**  
+Takes a 1024 x 1024 PNG and creates all associated app icons using Android's naming conventions  
 
-_create-ios-app-icons_  
-Takes a 1024 x 1024 PNG and creates 1/2/3x assets using iOS naming conventions  
+2. **Create iOS Launcher Icons**  
+Takes a 1024 x 1024 PNG and creates all associated app icons using iOS naming conventions
 
-_docNameToLayerName_  
-Renames the layer based on the filename  
+3. **PS Rename Layers**    
+Renames the Photoshop layer based on the asset's filename
 
-_us-android-export-padding_  
-Takes a XXXHDPI image and creates M/H/X/XX/XXXHDPI assets using Android naming conventions  
+4. **Create Android Assets**  
+Takes a XXXHDPI image and creates M/H/X/XX/XXXHDPI assets using Android naming conventions and file structure
 
-_us-ios-export-padding_  
-Takes a 3x image and create 1/2/3x assets using iOS naming conventions 
+5. **Create iOS Assets**  
+Takes a 3x image and create 1/2/3x assets using iOS naming conventions
 
-_AI-MultiExporter_  
-Adds ability to export Illustrator artboards as PDFs    
+6. **AI MultiExporter**  
+Adds ability to export Illustrator artboards as PDF files (for using vector assets on iOS)
 
-**Actions**  
-_Asset Automator_  
-Contains two actions which run the layer renaming script, then either one of the OS specific asset assembly scripts  
-Contains two actions that will create OS specific application icons from a PNG file  
+####Actions  
 
-**Services**  
-_Strip Asset Prefix_  
-This service removes the 'assets_' prefix from the initial 3x assets created from Illustrator  
+**Mobile Asset Automator**  
 
-_Cleanup Orignal Assets_  
-Removes the original asset files from the directory  
+1. Contains two actions which run the layer renaming script, then either one of the Android or iOS specific asset assembly scripts
+2. Contains two actions that will create Android or iOS specific app/launcher icons
 
-_Asset Consolidator_  
-This service moves all files from subdirectories into root directory  
+####Services  
+1. **Remove Asset Prefix**  
+Removes the 'assets_' prefix from the initial 3x assets created from Illustrator
 
-_Merge Folders_  
-Merges the contents of folders with the same name  
+2. **Remove Orignal Asset**  
+Removes the original asset files from the directory
 
+3. **iOS Consolidator**  
+Moves all files from subdirectories into root directory  
 
-####Automating Your Workflow  
+4. **Android Consolidator**  
+Merges the subdirectories within a directory that share the same name
 
-**Initial Asset Setup**  
-This method utilizes a single file to control dimensions, colors, and naming easily, while also generating 3x/4x graphics.
+####Initial Asset Setup & Automation
 
-1. Consolidate your assets into a single Illustrator document using multiple artboards, saving this file as 'assets.eps'  
-2. Name each Artboard as desired  
-3. File > Export to a new directory named 'assets'
-	- 'Format: PNG' 
-	- Select 'Use Artboards'  
+**In Illustrator**  
+
+1. Create or merge your assets into a single Illustrator document using multiple Artboards
+2. Save this file as 'assets.eps'
+	- The name is actually important, as we will use a script to remove this prefix from the images 
+2. Rename each Artboard based on the desire asset name
+3. File > Export to a new directory named 'assets', using 'Format: PNG' and select 'Use Artboards' 
 4. Select 'Resolution: Other'
-	- Set to '216 PPI' for iOS (3x 72dpi)   
-	- Set to '288 PPI' for Android (4x 72dpi)   
+	- For iOS set to '216 PPI' (3x 72dpi)
+	- Android set to '288 PPI' (4x 72dpi)  
 
-**Creating Assets**  
-Once your assets are in a common directory, the Photoshop actions and scripts will generate the assets for production.
+**In Finder**  
 
-1. Command click on the initial 'assets' directory and run Service > Strip Asset Prefix, which will remove the 'assets_' prefix from all of your files.
-2. Open Photoshop.
-3. File > Automate > Batch
-	1. 'Set: Asset Automator'.  
-	2. 'Action: Create iOS Assets' or 'Create Android Assets'.
-	3. 'Source: Folder' - Select your initial setup directory with your assets.
-	4. 'Destination' - Select the same 'Source' directory.
-	5. Press OK, which will run the scripts on all of your assets in your folder, creating a directory for each with the properly name assets in each.
-5. Command click on the parent directory and run Service > Cleanup Orignal Assets, which will remove the original assets.
+1. Right/Control click on the parent 'assets' directory and run Service > Strip Asset Prefix 
+	- This will remove the 'assets_' prefix from all your images
 
-_For iOS you may want all of your assets combined into a single directory instead of separated into their own sub-directories_  
+**In Photoshop**  
 
-1. Right click on the parent directory and run Services > Asset Consolidator.
+1. File > Automate > Batch
+2. Select 'Set: Asset Automator', 'Action: Create iOS Assets' or 'Create Android Assets', 'Source: Folder', select your 'assets' directory containing your assets
+3. Press OK 
+	- This will run the scripts on all your assets in your folder, creating a directory for each with the proper name associated to each
 
-_For Android you may want all of your assets combined into a single set of the size class directories instead of separated into their own sub-directories_   
+**In Finder**  
 
-1. Create a new directory for the consolidated assets.
-2. Select all of the auto-generated directories in the assets directory and run Services > Merge Directories.
-3. Select the newly created directory as the destination.
+1. Right click on the parent directory and run Service > Cleanup Original Assets
+	- With the original assets removed, the resized assets remain in the directory.
 
-**Creating App Icons**  
+####Wrapping them up
 
-1. Create a 1024px x 1024px PNG version of the application icon
-2. Open Photoshop
-3. Actions > Asset Automator > 'Create iOS App Icons' or 'Create Android Launcher Icons'
-4. Select your app icon file
+Consolidating your assets into a single directory may be desirable. Developers can replace the whole asset directory instead of individual assets one by one.
+
+**iOS**  
+
+1. Right/Control click on the parent directory and run Service > iOS Consolidator
+	- This moves all the assets into the root directory and removes the empty subdirectories
+
+**Android**
+
+1. Select allthe asset directories within the parent directory 
+2. Right/Control click on the selected directories and run Service > Android Consolidator 
+3. Select a destination for the consolidated files
+4. Trash original directory
+
+**And that's it, you now have a full set of assets ready for production.**
 
 
-**Sources**  
-[Consolidate Images using Automator](http://www.macworld.com/article/1160660/automator_filesfromsubfolders.html)  
-[Export Layer for iOS](https://github.com/UncorkedStudios/export-to-ios) _*edited_  
-[Export Layers for Android](https://github.com/UncorkedStudios/export-to-android) _*edited_  
-[Merge Folders](https://gist.github.com/c0der78/1995482)  
-[Output iOS Icons](https://gist.github.com/tlinkner/3723395) _*edited_  
-[Output Android Icons](https://gist.github.com/tlinkner/0a0090895b631f855cd3) _*edited_  
+##Application Icons
+
+To generate our home screen application assets, we need a single 1024px x 1024px PNG file named 'app-icon.png'.
+
+**In Photoshop**  
+
+1. Actions > Mobile Asset Automator > Create Android Launcher Icons or Create iOS App Icons
+2. Select app-icon.png and click Open
+
+**This will create and structure your application icons in the same location as your app-icon.png file.**
+
+**Original Sources & Scripts**  
 [Rename Photoshop Layer as Filename](http://polygonspixelsandpaint.tumblr.com/post/45209654643)  
+[Export Layer as iOS 3x, 2x, 1x assets](https://github.com/UncorkedStudios/export-to-ios)  
+[Export Layer as Android XXHDPI, XHDPI, HDPI, MDPI, and LDPI assets](https://github.com/UncorkedStudios/export-to-android)  
+[Consolidate Images using Automator](http://www.macworld.com/article/1160660/automator_filesfromsubfolders.html)  
+[Merge Folders AppleScript](https://gist.github.com/deadcoda/1995482)
