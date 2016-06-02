@@ -31,6 +31,7 @@ function init() {
 		saveFunc('xhdpi');
 		saveFunc('hdpi');
 		saveFunc('mdpi');
+		saveFunc('ldpi');
 	} else {
 		alert("Please save your document before running this script.");
 	}
@@ -81,6 +82,9 @@ function resizeDoc(document, scale) {
 	} else if(scale === 'mdpi') {
 		newHeight = Math.floor(calcHeight / 4);
 		newWidth = Math.floor(calcWidth / 4);
+	} else if(scale === 'ldpi') {
+		newHeight = Math.floor(calcHeight / 4 * 0.75);
+		newWidth = Math.floor(calcWidth / 4 * 0.75);
 	}
 
 	// Resize temp document using Bicubic interpolation
