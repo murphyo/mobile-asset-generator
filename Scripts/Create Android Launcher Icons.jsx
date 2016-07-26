@@ -30,7 +30,7 @@ function main() {
     app.preferences.typeUnits = TypeUnits.PIXELS
 
     // Android Icons
-
+    resize(48,0.75);
     resize(48,1);
     resize(48,1.5);
     resize(48,2);
@@ -45,12 +45,14 @@ function resize(size,scaleFactor) {
 
     var docRef = app.activeDocument,
         Path = docRef.path,
+        ldpifolder = Folder(Path + '/' + 'mipmap-' + 'ldpi'),
         mdpifolder = Folder(Path + '/' + 'mipmap-' + 'mdpi'),
         hdpifolder = Folder(Path + '/' + 'mipmap-' + 'hdpi'),
         xhdpifolder = Folder(Path + '/' + 'mipmap-' + 'xhdpi'),
         xxhdpifolder = Folder(Path + '/' + 'mipmap-' + 'xxhdpi'),
         xxxhdpifolder = Folder(Path + '/' + 'mipmap-' + 'xxxhdpi');
 
+    ldpifolder.create();
     mdpifolder.create();
     hdpifolder.create();
     xhdpifolder.create();
@@ -58,7 +60,9 @@ function resize(size,scaleFactor) {
     xxxhdpifolder.create();
 
      // Setup file name
-    if (scaleFactor == 1) {
+    if (scaleFactor == 0.75) {
+        var pname = app.activeDocument.path + "/mipmap-ldpi/";
+    } else if (scaleFactor == 1) {
         var pname = app.activeDocument.path + "/mipmap-mdpi/";
     } else if (scaleFactor == 1.5) {
         var pname = app.activeDocument.path + "/mipmap-hdpi/";
