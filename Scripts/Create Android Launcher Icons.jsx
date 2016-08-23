@@ -36,6 +36,7 @@ function main() {
     resize(48,2);
     resize(48,3);
     resize(48,4);
+    resize(48,10.6666667);
 
     // Clean up
     app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
@@ -51,6 +52,7 @@ function resize(size,scaleFactor) {
         xhdpifolder = Folder(Path + '/' + 'mipmap-' + 'xhdpi'),
         xxhdpifolder = Folder(Path + '/' + 'mipmap-' + 'xxhdpi'),
         xxxhdpifolder = Folder(Path + '/' + 'mipmap-' + 'xxxhdpi');
+        highresfolder = Folder(Path + '/' + 'mipmap-' + 'high-res');
 
     ldpifolder.create();
     mdpifolder.create();
@@ -58,6 +60,7 @@ function resize(size,scaleFactor) {
     xhdpifolder.create();
     xxhdpifolder.create();
     xxxhdpifolder.create();
+    highresfolder.create();
 
      // Setup file name
     if (scaleFactor == 0.75) {
@@ -72,6 +75,8 @@ function resize(size,scaleFactor) {
         var pname = app.activeDocument.path + "/mipmap-xxhdpi/";
     } else if (scaleFactor == 4) {
         var pname = app.activeDocument.path + "/mipmap-xxxhdpi/";
+    } else if (scaleFactor == 10.6666667) {
+        var pname = app.activeDocument.path + "/mipmap-high-res/";
     } else {
         var pname = app.activeDocument.path + "/";
     }
