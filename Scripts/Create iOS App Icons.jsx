@@ -77,7 +77,7 @@ function resize(size,scaleFactor) {
     opts = new ExportOptionsSaveForWeb();
     opts.format = SaveDocumentType.PNG;
     opts.PNG8 = false;
-    opts.transparency = true;
+    opts.transparency = false;
     opts.interlaced = 0;
     opts.includeProfile = false;
     opts.optimized = true;
