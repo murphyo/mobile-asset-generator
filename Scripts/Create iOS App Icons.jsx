@@ -12,6 +12,7 @@
 // [name]-40.png
 // [name]-40@2x.png
 // [name]-40@3x.png
+// [name]-60.png
 // [name]-60@2x.png
 // [name]-60@3x.png
 // [name]-76.png
@@ -45,6 +46,7 @@ function main() {
     resize(40,1);
     resize(40,2);
     resize(40,3);
+    resize(60,1);
     resize(60,2);
     resize(60,3);
     resize(76,1);
