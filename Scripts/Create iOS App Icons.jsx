@@ -6,6 +6,9 @@
 // This script is for Photoshop CS6. It outputs iOS icons of the following
 // sizes from a source 1024px x 1024px PSD
 //
+// [name]-20.png
+// [name]-20@2x.png
+// [name]-20@3x.png
 // [name]-29.png
 // [name]-29@2x.png
 // [name]-29@3x.png
@@ -40,6 +43,9 @@ function main() {
 
     // iOS 8 Icons
 
+    resize(20,1);
+    resize(20,2);
+    resize(20,3);
     resize(29,1);
     resize(29,2);
     resize(29,3);
